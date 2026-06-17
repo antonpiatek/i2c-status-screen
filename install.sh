@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 
-if ! raspi-config nonint get_i2c >/dev/null ; then
+i2c_state="$(raspi-config nonint get_i2c)"
+if [[ $i2c_state == "1" ]] ; then
 	echo i2c not enabled - enabling
-	sudo sudo raspi-config nonint do_i2c 0
+	sudo raspi-config nonint do_i2c 0
 fi
 
 if ! groups $USER|grep i2c; then
