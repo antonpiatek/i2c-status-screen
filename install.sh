@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+#todo conditional
+sudo apt-get install -y python3-smbus2 i2c-tools python3 python3-dev python3-venv raspi-config
+
 i2c_state="$(raspi-config nonint get_i2c)"
 if [[ $i2c_state == "1" ]] ; then
 	echo i2c not enabled - enabling
@@ -12,8 +15,6 @@ if ! groups $USER|grep i2c; then
   sudo adduser $USER i2c
 fi
 
-#todo conditional
-sudo apt-get install python3-smbus2 i2c-tools python3 python3-dev
 
 echo i2c dump:
 i2cdetect  -y 1
