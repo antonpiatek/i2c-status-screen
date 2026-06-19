@@ -3,3 +3,4 @@ adafruit-blinka
 psutil
 gpiozero
 Pillow
+rpi-lgpio
